@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## 2. Build Protobuf
 
 ## Download the latest protobuf source from github:
