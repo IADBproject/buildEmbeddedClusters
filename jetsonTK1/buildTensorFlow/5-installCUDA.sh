@@ -11,3 +11,7 @@ sudo apt-get update
 sudo apt-get install cuda-toolkit-6-5
 
 ## Install cuDNN library
+cp cudnn-6.5-linux-ARMv7-v2/cudnn.h /usr/local/cuda-6.5/include
+cp cudnn-6.5-linux-ARMv7-v2/libcudnn* /usr/local/cuda-6.5/lib
+
+## Install CUDA 7.0
