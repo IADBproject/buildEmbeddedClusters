@@ -15,3 +15,21 @@ cp cudnn-6.5-linux-ARMv7-v2/cudnn.h /usr/local/cuda-6.5/include
 cp cudnn-6.5-linux-ARMv7-v2/libcudnn* /usr/local/cuda-6.5/lib
 
 ## Install CUDA 7.0
+mkdir /opt/cuda-7.0/
+cd /opt/cuda-7.0/
+wget http://developer.download.nvidia.com/embedded/L4T/r24_Release_v1.0/CUDA/cuda-repo-l4t-7-0-local_7.0-76_armhf.deb
+
+sudo dpkg -i cuda-repo-l4t-7-0-local_7.0-76_armhf.deb 
+sudo apt-get update
+sudo apt-get install cuda-toolkit-7-0
+
+## Build a symbolic link to cuda-6.5
+cd /usr/local   
+sudo rm cuda   
+sudo ln -s cuda-6.5/ cuda
+
+## Add path to .bashrc
+echo "export CPAHT=/usr/local/cuda/include:$CPATH" >> ~/.bashrc   
+echo "export PAHT=/usr/local/cuda-6.5/bin:$PATH" >> ~/.bashrc   
+echo "export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib:$LD_LIBRARY_PATH" >> ~/.bashrc   
+source ~/.bashrc
