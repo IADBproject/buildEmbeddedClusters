@@ -36,6 +36,3 @@ echo "export PATH=/usr/local/cuda-6.5/bin:$PATH" >> ~/.bashrc
 ## Enables cuda-6.5/libe to execute Tensorflow 
 echo "export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 source ~/.bashrc
-
-## Install numpy
-sudo pip install -U numpy
