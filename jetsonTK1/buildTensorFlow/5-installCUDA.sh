@@ -9,7 +9,7 @@ sudo apt-get update
 sudo apt-get install cuda-toolkit-6-5
 
 ## Install cuDNN-6.5 library from buildEmbeddedClusters repository
-cd /opt/buildEmbeddedClusters/jetsonTK1/pypa-tft/
+cd /opt/buildEmbeddedClusters/jetsonTK1/pypa-tf/
 sudo cp ../buildTensorFlow/cudnn-6.5-linux-ARMv7-v2/cudnn.h /usr/local/cuda-6.5/include
 sudo cp ../buildTensorFlow/cudnn-6.5-linux-ARMv7-v2/libcudnn* /usr/local/cuda-6.5/lib
 
