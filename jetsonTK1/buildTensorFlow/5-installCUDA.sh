@@ -29,5 +29,10 @@ sudo ln -s cuda-6.5/ cuda
 ## Add path to .bashrc
 echo "export CPATH=/usr/local/cuda/include:$CPATH" >> ~/.bashrc   
 echo "export PATH=/usr/local/cuda-6.5/bin:$PATH" >> ~/.bashrc
-echo "export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
+
+## Enables cuda-7.0/lib for compiling Tensorflow
+## echo "export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
+
+## Enables cuda-6.5/libe to execute Tensorflow 
+echo "export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib:$LD_LIBRARY_PATH" >> ~/.bashrc
 source ~/.bashrc
