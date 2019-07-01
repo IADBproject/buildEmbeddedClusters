@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bazel install prerequisites
-sudo apt install -y pkg-config zip g++ zlib1g-dev unzip python3
+sudo apt install -y pkg-config zip g++ zlib1g-dev unzip python3 openjdk-8-jdk
 
 # TensorFlow build prerequisites
 sudo apt install -y python3-dev python3-pip
