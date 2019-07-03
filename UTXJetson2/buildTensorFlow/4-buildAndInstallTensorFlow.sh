@@ -17,4 +17,4 @@ echo '/usr/bin/python3\n\n\n\n\n\ny\n\n\n\ny\n\n\n\n\n\n\n6.2\ny\n/usr/local\n' 
 build_dir=$(mktemp -d)
 ./bazel-bin/tensorflow/tools/pip_package/build_pip_package "$build_dir"
 cd "$build_dir"
-python3 -m pip install --user tensorflow-1.3.1-cp35-cp35m-linux_x86_64.whl
+python3 -m pip install tensorflow-1.3.1-cp35-cp35m-linux_x86_64.whl

@@ -7,4 +7,4 @@ tar zxf mvapich2-2.3.1.tar.gz
 cd mvapich2-2.3.1
 ./configure --disable-mcast --disable-fortran
 make -j
-sudo make install
+make install
