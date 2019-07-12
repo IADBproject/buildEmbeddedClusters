@@ -15,7 +15,7 @@ function installNode () {
     echo "Copying scripts to host $hostname..." > "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" scp -o StrictHostKeyChecking=accept-new -r scripts/ "$hostname": > "$LOGFILE" 2>&1
     echo "Installing on host $hostname..." > "$LOGFILE" 2>&1
-    sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -S bash scripts/runAll.sh" > "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash scripts/runAll.sh" > "$LOGFILE" 2>&1
 }
 
 mkdir -p "$LOG_DIR"
