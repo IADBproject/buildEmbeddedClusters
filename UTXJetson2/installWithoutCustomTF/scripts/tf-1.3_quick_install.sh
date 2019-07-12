@@ -37,8 +37,13 @@ python3.6 -m pip install --upgrade keras==2.1.3
 #4) Install mpi4py
 python3.6 -m pip install mpi4py
 
+# Make sure numpy is installed correctly
+# (there were issues with scikit-learn's build)
+python3.6 -m pip uninstall -y numpy
+python3.6 -m pip install numpy
+
 #5) install pandas
--H python3.6 -m pip install pandas
+python3.6 -m pip install pandas
 
 #6) Matplotlib
 apt-get install -y libfreetype6-dev libpng-dev
@@ -58,4 +63,5 @@ python3.6 -m pip install scikit-learn==0.21.1
 ## or
 ## pip3 install git+https://github.com/scikit-learn/scikit-learn.git
 
+#8) psutil
 python3.6 -m pip install psutil==5.6.3
