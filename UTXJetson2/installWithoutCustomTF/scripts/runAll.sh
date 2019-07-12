@@ -4,6 +4,9 @@ echo "Running all the installation scripts."
 
 SCRIPT_DIR=$(dirname "$BASH_SOURCE")
 
+echo "Running \`dpkg --configure -a\` in case dpkg was interrupted before..."
+dpkg --configure -a
+
 echo "Setting up NFS..."
 "$SCRIPT_DIR/setUpNFS.sh"
 echo "Installing CUDA..."

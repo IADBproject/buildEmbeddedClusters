@@ -12,9 +12,9 @@ function installNode () {
     ip_addr=$1
     LOGFILE="$LOG_DIR/log_$ip_addr.txt"
     hostname="$USERNAME@$ip_addr"
-    echo "Copying scripts to node n°$i..." > "$LOGFILE" 2>&1
+    echo "Copying scripts to host $hostname..." > "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" scp -o StrictHostKeyChecking=accept-new -r scripts/ "$hostname": > "$LOGFILE" 2>&1
-    echo "Installing on node n°$i..." > "$LOGFILE" 2>&1
+    echo "Installing on host $hostname..." > "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -S bash scripts/runAll.sh" > "$LOGFILE" 2>&1
 }
 
