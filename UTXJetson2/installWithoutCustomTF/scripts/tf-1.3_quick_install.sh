@@ -57,3 +57,5 @@ python3.6 -m pip install cython
 python3.6 -m pip install scikit-learn==0.21.1
 ## or
 ## pip3 install git+https://github.com/scikit-learn/scikit-learn.git
+
+python3.6 -m pip install psutil==5.6.3
