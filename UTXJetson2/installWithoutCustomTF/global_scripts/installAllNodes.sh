@@ -22,7 +22,7 @@ function setUpUserOnNode () {
     LOGFILE="$LOG_DIR/log_$ip_addr.txt"
     hostname="$USERNAME@$ip_addr"
     echo "Creating new user on $hostname..." > "$LOGFILE" 2>&1
-    sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS useradd -m '$NEW_USERNAME'" >> "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" ssh -o StrictHostKeyChecking=accept-new "$hostname" "echo '$SUDO_PW' | sudo -HS useradd -m '$NEW_USERNAME'" >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS adduser '$NEW_USERNAME' sudo" >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash -c \"echo '$NEW_USERNAME:$NEW_PW' | chpasswd\"" >> "$LOGFILE" 2>&1
 }
@@ -32,7 +32,8 @@ function installNode () {
     LOGFILE="$LOG_DIR/log_$ip_addr.txt"
     hostname="$USERNAME@$ip_addr"
     echo "Copying scripts to host $hostname..." >> "$LOGFILE" 2>&1
-    sshpass -p "$SUDO_PW" scp -o StrictHostKeyChecking=accept-new -r scripts/ node_ip_addresses.txt "$hostname": >> "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" scp -o StrictHostKeyChecking=accept-new -r scripts/ "$IP_ADDRESSES_FILE" "$hostname": >> "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" ssh "$hostname" "chmod +x scripts/*.sh" scripts/ >> "$LOGFILE" 2>&1
     echo "Installing on host $hostname..." >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash scripts/runAll.sh $2" >> "$LOGFILE" 2>&1
 }
@@ -43,14 +44,19 @@ while read ip_addr; do
     setUpUserOnNode $ip_addr &
 done < "$IP_ADDRESSES_FILE"
 
+wait
+
+USERNAME="$NEW_USERNAME"
+SUDO_PW="$NEW_PW"
+
 MASTER_IDs=(7 15 23)
 i=0
 while read ip_addr; do
-    if [[ $(isIn $i MASTER_IDs) ]]: then
-        isMaster=true
-    else
-        isMaster=false
-    fi
+    # if [[ $(isIn $i MASTER_IDs) ]]: then
+    #     isMaster=true
+    # else
+    #     isMaster=false
+    # fi
     installNode $ip_addr $isMaster &
 done < "$IP_ADDRESSES_FILE"
 

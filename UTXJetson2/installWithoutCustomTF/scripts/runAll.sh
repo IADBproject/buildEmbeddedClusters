@@ -7,6 +7,8 @@ SCRIPT_DIR=$(dirname "$BASH_SOURCE")
 echo "Running \`dpkg --configure -a\` in case dpkg was interrupted before..."
 dpkg --configure -a
 
+echo "Setting up SSH..."
+"$SCRIPT_DIR/setUpSSH.sh"
 echo "Setting up NFS..."
 "$SCRIPT_DIR/setUpNFS.sh"
 echo "Installing CUDA..."
