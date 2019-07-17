@@ -7,7 +7,7 @@ PW='mpiuser'
 apt-get install -y sshpass
 
 # generate this node's SSH key
-ssh-keygen -t rsa -N "" -f "/home/mpiuser/.ssh/id_rsa"
+su mpiuser -c 'mkdir -p /home/mpiuser/.ssh && ssh-keygen -t rsa -N "" -f "/home/mpiuser/.ssh/id_rsa"'
 
 # copy the key to all nodes
 while read ip_addr; do
