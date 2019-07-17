@@ -11,6 +11,7 @@ function isIn () {
 }
 
 IP_ADDRESSES_FILE="$(dirname $BASH_SOURCE)/node_ip_addresses.txt"
+MASTER_IP_ADDRESSES_FILE="$(dirname $BASH_SOURCE)/master_ip_addresses.txt"
 USERNAME="nvidia"
 SUDO_PW="nvidia"
 NEW_USERNAME='mpiuser'
@@ -32,7 +33,7 @@ function installNode () {
     LOGFILE="$LOG_DIR/log_$ip_addr.txt"
     hostname="$USERNAME@$ip_addr"
     echo "Copying scripts to host $hostname..." >> "$LOGFILE" 2>&1
-    sshpass -p "$SUDO_PW" scp -o StrictHostKeyChecking=accept-new -r scripts/ "$IP_ADDRESSES_FILE" "$hostname": >> "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" scp -o StrictHostKeyChecking=accept-new -r scripts/ "$IP_ADDRESSES_FILE" "$MASTER_IP_ADDRESSES_FILE" "$hostname": >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "chmod +x scripts/*.sh" scripts/ >> "$LOGFILE" 2>&1
     echo "Installing on host $hostname..." >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash scripts/runAll.sh $2" >> "$LOGFILE" 2>&1
@@ -49,14 +50,13 @@ wait
 USERNAME="$NEW_USERNAME"
 SUDO_PW="$NEW_PW"
 
-MASTER_IDs=(7 15 23)
 i=0
 while read ip_addr; do
-    # if [[ $(isIn $i MASTER_IDs) ]]: then
-    #     isMaster=true
-    # else
-    #     isMaster=false
-    # fi
+    if [[ $i -eq 7 || $i -eq 15 || $i -eq 23 ]]; then
+        isMaster=1
+    else
+        isMaster=0
+    fi
     installNode $ip_addr $isMaster &
 done < "$IP_ADDRESSES_FILE"
 

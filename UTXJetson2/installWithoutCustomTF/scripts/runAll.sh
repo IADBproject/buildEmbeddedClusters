@@ -9,8 +9,13 @@ dpkg --configure -a
 
 echo "Setting up SSH..."
 "$SCRIPT_DIR/setUpSSH.sh"
-echo "Setting up NFS..."
-"$SCRIPT_DIR/setUpNFS.sh"
+if [[ $1 -eq 1 ]]; then
+    echo "Setting up NFS (server)..."
+    "$SCRIPT_DIR/setUpNFSServer.sh"
+else
+    echo "Setting up NFS (client)..."
+    "$SCRIPT_DIR/setUpNFSClient.sh"
+fi
 echo "Installing CUDA..."
 "$SCRIPT_DIR/installCUDA.sh"
 echo "Installing TensorFlow..."

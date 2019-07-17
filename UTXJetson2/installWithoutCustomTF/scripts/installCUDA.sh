@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # we assume that the guide was followed and the install packages are accessible via NFS
 INSTALL_DATA_DIR=/mnt/cluster_data/cluster0/UTXJetson2_install_packages
