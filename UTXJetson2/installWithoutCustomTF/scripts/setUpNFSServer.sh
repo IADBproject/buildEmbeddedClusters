@@ -2,7 +2,7 @@
 
 BLOCKDEV='/dev/sda'
 
-apt-get install nfs-kernel-server
+apt-get install -y nfs-kernel-server
 
 echo "Checking if formatted..."
 # prepare the file system
