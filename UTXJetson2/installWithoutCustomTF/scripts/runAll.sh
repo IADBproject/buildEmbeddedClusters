@@ -12,10 +12,9 @@ echo "Setting up SSH..."
 if [[ $1 -eq 1 ]]; then
     echo "Setting up NFS (server)..."
     "$SCRIPT_DIR/setUpNFSServer.sh"
-else
-    echo "Setting up NFS (client)..."
-    "$SCRIPT_DIR/setUpNFSClient.sh"
 fi
+echo "Setting up NFS (client)..."
+"$SCRIPT_DIR/setUpNFSClient.sh"
 echo "Installing CUDA..."
 "$SCRIPT_DIR/installCUDA.sh"
 echo "Installing TensorFlow..."

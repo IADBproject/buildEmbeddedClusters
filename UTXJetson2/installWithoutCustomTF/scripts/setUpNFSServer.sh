@@ -2,7 +2,7 @@
 
 BLOCKDEV='/dev/sda'
 
-apt-get install -y nfs-kernel-server
+apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install -y nfs-kernel-server
 
 echo "Checking if formatted..."
 # prepare the file system

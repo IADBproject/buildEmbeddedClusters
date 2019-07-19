@@ -69,8 +69,6 @@ wait
 USERNAME="$NEW_USERNAME"
 SUDO_PW="$NEW_PW"
 
-i=0
-
 # first install the NFS masters
 echo "Setting up the NFS masters..."
 while read ip_addr; do
