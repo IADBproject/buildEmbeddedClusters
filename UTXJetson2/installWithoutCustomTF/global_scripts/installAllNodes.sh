@@ -34,6 +34,7 @@ function setUpUserOnNode () {
     echo "Creating new user on $hostname..." > "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh -o StrictHostKeyChecking=accept-new "$hostname" "echo '$SUDO_PW' | sudo -HS useradd -m '$NEW_USERNAME'" >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS adduser '$NEW_USERNAME' sudo" >> "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS adduser '$NEW_USERNAME' video" >> "$LOGFILE" 2>&1
     sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash -c \"echo '$NEW_USERNAME:$NEW_PW' | chpasswd\"" >> "$LOGFILE" 2>&1
 }
 
