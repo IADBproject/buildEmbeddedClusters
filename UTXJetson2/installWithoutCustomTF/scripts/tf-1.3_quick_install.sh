@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTALL_DATA_DIR=/mnt/cluster_data/cluster0/UTXJetson2_install_packages
+INSTALL_DATA_DIR=/home/mpiuser/cloud/1/UTXJetson2_install_packages
 
 #0) Turn on all the CPU and export LC_ALL
 nvpmodel -m 2
