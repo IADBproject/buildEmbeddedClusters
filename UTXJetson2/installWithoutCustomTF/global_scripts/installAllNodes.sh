@@ -71,9 +71,12 @@ USERNAME="$NEW_USERNAME"
 SUDO_PW="$NEW_PW"
 
 # first install the NFS masters
+master_nums=(7 15 23)
+i=0
 echo "Setting up the NFS masters..."
 while read ip_addr; do
-    installNode $ip_addr 1 &
+    installNode $ip_addr 1 "${master_nums[i]}" &
+    i=$(( $i + 1 ))
 done < "$MASTER_IP_ADDRESSES_FILE"
 
 wait

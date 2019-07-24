@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # we assume that the guide was followed and the install packages are accessible via NFS
-INSTALL_DATA_DIR=/mnt/cluster_data/cluster0/UTXJetson2_install_packages
+INSTALL_DATA_DIR="/home/mpiuser/cloud/1/UTXJetson2_install_packages"
 
 # cd $(mktemp -d)
 cd "$INSTALL_DATA_DIR"
