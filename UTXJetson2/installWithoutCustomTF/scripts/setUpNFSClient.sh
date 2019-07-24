@@ -11,3 +11,6 @@ while read ip_addr; do
     mount -t nfs -o proto=tcp,port=2049 "$ip_addr:/exports" "$mountpoint"
     i=$(( i+1 ))
 done < "$MASTER_ADDRESSES_FILE"
+
+chown -R mpiuser "/home/mpiuser/cloud"
+chgrp -R mpiuser "/home/mpiuser/cloud"

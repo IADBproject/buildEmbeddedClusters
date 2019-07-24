@@ -19,3 +19,5 @@ echo "Installing CUDA..."
 "$SCRIPT_DIR/installCUDA.sh"
 echo "Installing TensorFlow..."
 "$SCRIPT_DIR/tf-1.3_quick_install.sh"
+echo "Misc configuration..."
+"$SCRIPT_DIR/miscConfig.sh" $2

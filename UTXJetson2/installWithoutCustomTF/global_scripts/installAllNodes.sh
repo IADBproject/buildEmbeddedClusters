@@ -55,7 +55,7 @@ function installNode () {
     sendScriptsToNode $ip_addr
 
     echo "Installing on host $hostname..." >> "$LOGFILE" 2>&1
-    sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash scripts/runAll.sh $2" >> "$LOGFILE" 2>&1
+    sshpass -p "$SUDO_PW" ssh "$hostname" "echo '$SUDO_PW' | sudo -HS bash scripts/runAll.sh $2 $3" >> "$LOGFILE" 2>&1
 }
 
 mkdir -p "$LOG_DIR"
@@ -79,6 +79,7 @@ done < "$MASTER_IP_ADDRESSES_FILE"
 wait
 
 # then install the other nodes
+node_number=0
 echo "Setting up the workers..."
 while read ip_addr; do
     isMaster=0
@@ -88,8 +89,9 @@ while read ip_addr; do
         fi
     done < "$MASTER_IP_ADDRESSES_FILE"
     if [[ "$isMaster" == 0 ]]; then
-        installNode $ip_addr 0 &
+        installNode $ip_addr 0 $node_number &
     fi
+    node_number=$(( $node_number + 1 ))
 done < "$IP_ADDRESSES_FILE"
 
 wait
