@@ -15,6 +15,8 @@ if [[ "$1" -eq 1 ]]; then
 fi
 echo "Setting up NFS (client)..."
 "$SCRIPT_DIR/setUpNFSClient.sh" $1
+echo "Adding a swap file..."
+"$SCRIPT_DIR/setUpSwap.sh"
 echo "Installing CUDA..."
 "$SCRIPT_DIR/installCUDA.sh"
 echo "Installing TensorFlow..."
