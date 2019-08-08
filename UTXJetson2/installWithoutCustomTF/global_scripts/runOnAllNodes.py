@@ -8,8 +8,13 @@ import os
 import sys
 
 IP_FILE = os.path.join(os.path.dirname(__file__), "node_ip_addresses.txt")
-USERNAME = "mpiuser"
-PASSWORD = "mpiuser"
+
+if sys.argv[1] == "nvidia":
+    USERNAME = "nvidia"
+    PASSWORD = "nvidia"
+else:
+    USERNAME = "mpiuser"
+    PASSWORD = "mpiuser"
 
 with open(IP_FILE, "rt") as ipf:
     while True:
@@ -25,6 +30,6 @@ with open(IP_FILE, "rt") as ipf:
                 username = USERNAME,
                 password = PASSWORD
         )
-        command = "echo '{}' | sudo -HS bash -c '{}'".format(PASSWORD, ' '.join(sys.argv[1:]))
+        command = "echo '{}' | sudo -HS bash -c '{}'".format(PASSWORD, ' '.join(sys.argv[2:]))
         print("Launching command '{}' on host {}...".format(command, line))
         stdin, stderr, stdout = client.exec_command(command)
